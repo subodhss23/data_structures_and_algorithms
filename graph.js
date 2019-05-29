@@ -16,16 +16,16 @@ function createNode(key){
 }
 
 function createGraph(directed = false){
-    const node = [];
-    const node = [];
+    const nodes = [];
+    const edges = [];
 
     return {
         directed,
         nodes, 
-        edeges,
+        edges,
 
         addNode(key){
-            node.push(createNode(key));
+            nodes.push(createNode(key));
         },
 
         getNode(key){
@@ -46,13 +46,13 @@ function createGraph(directed = false){
     },
 
     print(){
-        return node
-            .map(({key, neighbours}) => {
+        return nodes
+            .map(({key, neighbors}) => {
             let result = key;
 
-            if (neighbours.length){
-                result += ` => ${neighbours
-                    .map(neighbour => neighbour.key)
+            if (neighbors.length){
+                result += ` => ${neighbors
+                    .map(neighbor => neighbor.key)
                     .join(' ')}`
             }
             return result;
@@ -61,3 +61,17 @@ function createGraph(directed = false){
     }
 }
 }
+
+const graph = createGraph(true);
+
+graph.addNode('Kyle');
+graph.addNode('Anna');
+graph.addNode('Krios');
+graph.addNode('Tali');
+
+graph.addEdge('Kyle', 'Anna');
+graph.addEdge('Anna', 'Kyle');
+graph.addEdge('Kyle', 'Kiros');
+graph.addEdge('Kyle', 'Tail');
+
+console.log(graph.print());
