@@ -29,7 +29,50 @@ function createLinkedList(){
             return node;
         },
         //pop
+            pop(){
+                //if list is empty
+                if (this.isEmpty()){
+                    return null;
+                }
+
+                //if list has one node only
+                const node = this.tail;
+                if (this.head === this.tail){
+                    this.head = null;
+                    this.tail = null;
+                    this.length --;
+                    return node;
+                }
+
+                let current = this.head;
+                let penultimate;
+                while (current){
+                    if (current.next === this.tail){
+                        penultimate = current;
+                        break;
+                    }
+
+                    current = current.next;
+                }
+
+                penultimate.next = null;
+                this.tail = penultimate;
+                this.length--;
+
+                return node;
+            },
+            
         //get
+            get (index){
+                if (index < 0 || index > this.length - 1){
+                    return null;
+                }
+
+                if (index === 0){
+                    return this.head;
+                }
+            },
+            
         //delete
         isEmpty(){
             return this.length === 0;
