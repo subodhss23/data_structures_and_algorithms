@@ -1,37 +1,33 @@
-//first come first out FIFO
+//manipulating queues with object oriented programming 
 
-function createQueue(){
-    const queue = [];
+class CreateQueue{
+    constructor(item){
+        this.item = item;
+        this.queue = [];
+    }
 
-    return {
+    add(item){
+        return this.queue.unshift(item);
+    }
 
-        add (item){
-            queue.unshift(item)
-        },
+    remove(){
+        return this.queue.pop();
+    }
 
-       remove (){
-           return queue.pop()
-       },
+    get length(){
+        return this.queue.length;
+    }
 
-       peek(){
-           return queue[queue.length - 1];
-       },
-       
-       get length(){
-           return queue.length;
-       },
-
-       isEmpty(){
-           return queue.length === 0;
-       }
+    isEmpty(){
+        return this.queue.length === 0;
     }
 }
 
-const q = createQueue();
-q.add('Make an egghead lesson');
-q.add('this is how I am learning data structure.');
-q.add('In this month I will master data strucure.')
+const a = new CreateQueue();
+console.log(a.isEmpty());
 
-q.remove();
-q.remove();
-console.log(q.peek());
+a.add('adding new element in our array ');
+a.add('this has to be the second one. ');
+
+a.remove();
+console.log(a.length);
