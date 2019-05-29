@@ -143,4 +143,7 @@ const nodes = values.map(val => list.push(val));
 
 console.log(list.isEmpty());
 
-console.log(list.pop().value);
+list.pop();
+console.log(list.tail.value);
+console.log(list.get(1));
+console.log(list.print());
