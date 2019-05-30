@@ -41,7 +41,7 @@ function mySet(){
 
     //method will return the union of two sets
     this.union = function(otherSet){
-        var unionSet = new Set();
+        var unionSet = new mySet();
         var firstSet = this.values();
         var secondSet = otherSet.values();
         firstSet.forEach(function(e){
@@ -49,6 +49,31 @@ function mySet(){
         });
         secondSet.forEach(function(e){
             unionSet.add(e);
-        })
-    }
+        });
+        return unionSet;
+    };
+
+    // this method will return the intersection of two sets as a new set
+    this.intersection = function(otherSet){
+        var intersectionSet = new mySet();
+        var firstSet = this.values();
+        firstSet.forEach(function(e){
+            if(otherSet.has(e)){
+                intersectionSet.add(e);
+            }
+        });
+        return intersectionSet;
+    };
+
+    // this method will return the difference of two sets as a new set
+    this.difference = function(otherSet){
+        var differenceSet = new Set();
+        var firstSet = this.values();
+        firstSet.forEach(function(e){
+            if(!otherSet.has(e)){
+                differenceSet.add(e);
+            }
+        });
+        return differenceSet;
+    };
 }
