@@ -14,7 +14,7 @@ class BST {
     }
 
     add(data){
-        const node = this.node;
+        const node = this.root;
         if (node === null){
             this.root = new Node(data);
             return;
@@ -34,7 +34,7 @@ class BST {
                     } else if(node.right !== null){
                         return searchTree(node.right);
                     }
-                } ekse {
+                } else {
                     return null;
                 }
             };
@@ -129,3 +129,19 @@ class BST {
         this.root = removeNode(this.root, data);
     }
 }
+
+const bst = new BST();
+
+bst.add(4);
+bst.add(2);
+bst.add(6);
+bst.add(1);
+bst.add(3);
+bst.add(5);
+bst.add(7);
+console.log(bst.isPresent(4));
+bst.remove(4);
+console.log(bst.findMin());
+console.log(bst.findMax());
+console.log(bst.findMax());
+console.log(bst.isPresent(4));
