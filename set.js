@@ -1,4 +1,6 @@
 /*Sets */
+/* no duplicate items and are not sorted */
+// application can be to check an unique item
 
 function mySet(){
     var collection = []; //var that will hold set
@@ -27,6 +29,26 @@ function mySet(){
         if(this.has(element)){
             index = collection.indexOf(element);
             collection.splice(index, 1);
+            return true;
         }
+        return false;
+    };
+
+    //method that will return the size of the collection
+    this.size = function() {
+        return collection.length;
+    };
+
+    //method will return the union of two sets
+    this.union = function(otherSet){
+        var unionSet = new Set();
+        var firstSet = this.values();
+        var secondSet = otherSet.values();
+        firstSet.forEach(function(e){
+            unionSet.add(e);
+        });
+        secondSet.forEach(function(e){
+            unionSet.add(e);
+        })
     }
 }
