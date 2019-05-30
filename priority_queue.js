@@ -1,46 +1,31 @@
-//Priority Queue
+// priority queue
 
-const { createQueue } = require('./index');
+function PriorityQueue(){
+    var collection = [];
+    this.printCollection =  function(){
+        (console.log(collection));
+    };
 
-function createPriorityQueue(){
-    const lowPriorityQueue = createQueue();
-    const highPriorityQueue = createQueue();
-
-    return {
-        enqueue(item, isHighPriority = false){
-            isHighPriority ? highPriorityQueue.enqueue(item) : 
-            lowPriorityQueue.enqueue(item);
-        },
-
-        dequeue(){
-            if (!highPriorityQueue.isEmpty()){
-                return highPriorityQueue.dequeue();
+    this.enqueue = function(element){
+        if (this.isEmpty()){
+            collection.push(element);
+        } else {
+            var added = false;
+            for (var i = 0; i < collection.length; i++){
+                if (element[i] < collection[i][1]){         //checking priorities
+                    collection.splice(i, 0, element);
+                    added = true;
+                    break;
+                }
             }
-            return lowPriorityQueue.dequeue();
-        },
-
-        peek(){
-            if (!highPriorityQueue.isEmpty()){
-                return highPriorityQueue.peek();
+            if (!added){
+                collection.push(element);
             }
-            return lowPriorityQueue.peek();
-        },
-
-        length(){
-            return highPriorityQueue.length + 
-                lowPriorityQueue.length ;
-        },
-
-        isEmpty(){
-            return (highPriorityQueue.isEmpty() && 
-                    lowPriorityQueue.isEmpty()
-            );
         }
+    };
+
+    this.dequeue = function() {
+        var value = collection.shift();
+        return value[0];
     }
 }
-
-const q = createPriorityQueue();
-
-q.enqueue('A fix here');
-q.enqueue('A fix there');
-q.enqueue(' A new feature ');
